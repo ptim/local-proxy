@@ -4,6 +4,9 @@ const glob = require('glob')
 const fs = require('fs')
 const url = require('url')
 const bs = require('browser-sync').create()
+var logger = require('eazy-logger').Logger({
+  useLevelPrefixes: false,
+})
 
 // Set to true to see each file requested
 const debug = false
@@ -47,10 +50,10 @@ const options = {
 }
 const filesToWatch = glob.sync(filePattern, options)
 
-console.log(`Found ${filesToWatch.length} files to serve:`)
-console.log(`-------------------------------------`)
-filesToWatch.forEach(file => { console.log(file) })
-console.log(`-------------------------------------\n`)
+logger.info(`{bold:Found }{magenta:%s}{bold: files to serve:}`, filesToWatch.length)
+logger.info('{grey:-------------------------------------}')
+filesToWatch.forEach(file => { logger.info('{green:%s}', file) })
+logger.info('{grey:-------------------------------------}\n')
 
 // Do a sanity check once before launching browser-sync
 let regexMashup

@@ -1,10 +1,12 @@
 {
   "name": "local-proxy",
+  "description": "Friendly middleware to proxy local files using browser-sync",
   "author": "Tim Osborn",
   "private": true,
   "devDependencies": {
     "babel-core": "^5.5.6",
     "browser-sync": "^2.2.1",
+    "eazy-logger": "^2.1.2",
     "glob": "^7.0.3"
   },
   "scripts": {
@@ -39,5 +41,6 @@
         "always-multiline"
       ]
     }
-  }
+  },
+  "version": "0.2.0"
 }
