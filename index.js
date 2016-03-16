@@ -1,32 +1,32 @@
 'use strict'
 
+const glob = require('glob')
 const fs = require('fs')
 const url = require('url')
 const bs = require('browser-sync').create()
 
-// The site to proxy. Suggest using the root domain
-const target = 'http://production-site.com'
-
-// A list of literal filenames *without* paths that you wish to proxy
-// You need to mirror the filesystem on the server, so:
-// - example.css should be located at ./styles/example.css if that's its path on the proxied site
-const filesToWatch = [
-  'example.css',
-]
-
-// By default we're watching all js and css files under the current directory
-// If you want to watch everything, use '**', // but it may cause the whole proxied page to refresh
-const reloadPatterns = [
-  '**/*.css',
-  '**/*.js',
-]
-
-// This can be a relative or absolute filepath (don't use ~/)
-// but the files inside
-const localPath = '.'
-
 // Set to true to see each file requested
 const debug = false
+
+// The site to proxy. I suggest using the root domain,
+// but if you're repeatedly opening the same file, you might change it to a deep link
+const targetSite = 'http://example.com.au'
+
+// path is a relative url from the current..
+// imagine that the directory you specify here
+// is where the proxied site's index.html is located,
+// and ensure you create a faithful directory hierarchy for the files you want replaced
+const localPath = 'local-files/'
+
+// filePattern is in the https://github.com/isaacs/minimatch format
+// you only need to change this if you want to restrict the files you'll include
+const filePattern = '**'
+
+// By default we're watching all files under the current directory
+// you can restrict this using a glob as above
+const watchPatterns = [
+  localPath + '**',
+]
 
 // By default browser-sync will helpfully open your target site on launch
 // set to false if this annoys you
@@ -38,13 +38,25 @@ const openOnLaunch = true
 // No need to edit under here unless you're hacking!
 // ============================================================
 
+if (debug) console.log(`Searching for: ${filePattern}\n`)
+
+const options = {
+  cwd: localPath,
+  nodir: true,
+  ignore: '{node_modules/**,.git/**}',
+}
+const filesToWatch = glob.sync(filePattern, options)
+
+console.log(`Found ${filesToWatch.length} files to serve:`)
+console.log(`-------------------------------------`)
+filesToWatch.forEach(file => { console.log(file) })
+console.log(`-------------------------------------\n`)
+
 // Do a sanity check once before launching browser-sync
 let regexMashup
 try {
-  // http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript/3561711#3561711
-  // const regexEscaped = filesToWatch.join('|').replace(/[-\/\\^$*+?.()[\]{}]/g, '\\$&')
   regexMashup = new RegExp(filesToWatch.join('|'))
-  console.log(`Compiled patterns to proxy: \n  ${regexMashup} \nTest these at https://regex101.com/\n`)
+  if (debug) console.log(`Compiled patterns to proxy: \n  ${regexMashup} \nTest these at https://regex101.com/\n`)
 }
 catch(e) {
   console.log(`That's not a valid regex! \nPlease check your regexMashup \n\n${e} \n`)
@@ -60,11 +72,11 @@ function proxyLocalFiles (req, res, next) {
     const localFileName = localPath + cleanedPath
     try {
       const localFile = fs.readFileSync(localFileName)
-      console.log(`> Proxying: ${localFileName}`)
+      if (debug) console.log(`> Proxying: ${localFileName}`)
       res.end(localFile.toString())
     }
     catch(e) {
-      console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
+      if (debug) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
       next()
     }
   }
@@ -78,11 +90,11 @@ bs.init({
   notify: true,
   port: 3000,
   open: openOnLaunch,
-  watch: reloadPatterns,
+  watch: watchPatterns,
   proxy: {
-    target: target,
+    target: targetSite,
     middleware: proxyLocalFiles,
   },
 })
 
-bs.watch(reloadPatterns).on('change', bs.reload)
+bs.watch(watchPatterns).on('change', bs.reload)

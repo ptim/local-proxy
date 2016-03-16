@@ -12,27 +12,29 @@ Thanks to browser-sync, it offers file watching and live reloading with (injecti
 
 ## Configure: 
 
-There are only two settings you need to configure in `index.js`:
-
-### The site to proxy
+In many cases, the only setting you'll need to change is: 
 
 ```
-const target = 'http://production-site.com'
+const targetSite = 'http://example.com'
 ```
 
-### A list of literal filenames 
+Then copy files you want to replace into `local-files`.
 
-... *without* paths that you wish to proxy.
-
-You need to mirror the filesystem on the server, so:
-
-example.css should be located at ./styles/example.css if that's its path on the proxied site
+You need to mimic the file layout on the target site precisely, eg:
 
 ```
-const filesToWatch = [
-    'example.css',
-]
+.
+└── local-files
+    ├── index.html # probably not!
+    ├── styles
+    │   ├── main.css
+    │   └── other.css
+    └── scripts
+        ├── index.js
+        └── other.js
 ```
+
+Note that you *could* proxy index.html, but it wouldn't make much sense for a dynamic site. Maybe useful if you want to 'replay' the DOM representation of a dynamic page.
 
 
 ## Run
