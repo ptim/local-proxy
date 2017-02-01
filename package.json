@@ -3,6 +3,10 @@
   "description": "Friendly middleware to proxy local files using browser-sync",
   "author": "Tim Osborn",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ptim/local-proxy.git"
+  },
   "preferGlobal": "true",
   "bin": {
     "local-proxy": "lib/local-proxy.js"
