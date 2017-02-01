@@ -12,35 +12,5 @@
   "scripts": {
     "start": "node index.js"
   },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "browser": false
-    },
-    "ecmaFeatures": {
-      "blockBindings": true,
-      "arrowFunctions": true,
-      "templateStrings": true
-    },
-    "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
-      "quotes": [
-        2,
-        "single"
-      ],
-      "curly": [
-        2,
-        "multi"
-      ],
-      "no-process-exit": 0,
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ]
-    }
-  },
   "version": "0.2.0"
 }

@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {},
+  },
+  "env": {
+    "node": true,
+  },
+  "ecmaFeatures": {
+    "blockBindings": true,
+    "arrowFunctions": true,
+    "templateStrings": true
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "quotes": [2, "single"],
+    "curly": [2, "multi"],
+    "no-process-exit": 0,
+    "comma-dangle": [2, "always-multiline"],
+  },
+}
