@@ -18,7 +18,7 @@
     "glob": "^7.0.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node lib/local-proxy.js"
   },
   "version": "0.2.0"
 }
