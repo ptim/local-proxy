@@ -13,27 +13,30 @@ const debug = false
 
 // The site to proxy. I suggest using the root domain,
 // but if you're repeatedly opening the same file, you might change it to a deep link
-const targetSite = 'http://example.com.au'
+const targetSite = 'https://staging2.flowji.com/new-home/'
 
 // path is a relative url from the current..
 // imagine that the directory you specify here
 // is where the proxied site's index.html is located,
 // and ensure you create a faithful directory hierarchy for the files you want replaced
-const localPath = 'local-files/'
+const localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/flowji-2018/'
 
 // filePattern is in the https://github.com/isaacs/minimatch format
 // you only need to change this if you want to restrict the files you'll include
 const filePattern = '**'
 
+const patternPrefix = 'wp-content/themes/flowji-2018/'
+
 // By default we're watching all files under the current directory
 // you can restrict this using a glob as above
 const watchPatterns = [
-  localPath + '**',
+  // localPath + '**',
+  localPath + filePattern,
 ]
 
 // By default browser-sync will helpfully open your target site on launch
 // set to false if this annoys you
-const openOnLaunch = true
+const openOnLaunch = false
 
 // ** note that you need to restart this script after making changes :)
 
@@ -71,8 +74,10 @@ function proxyLocalFiles (req, res, next) {
   const pathname = url.parse(req.url).pathname
   // enxure that we're not tripped up by cache busting query strings
   const cleanedPath = pathname.replace(/\?.*/, '')
+
   if (cleanedPath.match(regexMashup) && !cleanedPath.match(/\.map$/)) {
-    const localFileName = localPath + cleanedPath
+    let localFileName = localPath + cleanedPath
+    if (patternPrefix) localFileName = localFileName.replace(patternPrefix, '')
     try {
       const localFile = fs.readFileSync(localFileName)
       if (debug) console.log(`> Proxying: ${localFileName}`)
