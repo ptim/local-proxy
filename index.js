@@ -79,8 +79,8 @@ function proxyLocalFiles (req, res, next) {
     if (patternPrefix) localFileName = localFileName.replace(patternPrefix, '')
     try {
       const localFile = fs.readFileSync(localFileName)
-      if (debug) console.log(`> Proxying: ${localFileName}`)
-      res.end(localFile.toString())
+      if (debug) logger.info('📡    {green:%s}', localFileName.replace(localPath, ''))
+      res.sendFile(localFile)
     }
     catch(e) {
       if (verbose) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
