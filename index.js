@@ -12,7 +12,7 @@ const verbose = false
 
 // The site to proxy. I suggest using the root domain,
 // but if you're repeatedly opening the same file, you might change it to a deep link
-const targetSite = 'https://staging2.flowji.com/new-home/'
+const targetSite = 'https://staging2.flowji.com/'
 
 // path is a relative url from the current..
 // imagine that the directory you specify here
