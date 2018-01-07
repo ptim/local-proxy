@@ -7,7 +7,8 @@ var logger = require('eazy-logger').Logger({
 })
 
 // Set to true to see each file requested
-const debug = false
+const debug = true
+const verbose = false
 
 // The site to proxy. I suggest using the root domain,
 // but if you're repeatedly opening the same file, you might change it to a deep link
@@ -87,7 +88,7 @@ function proxyLocalFiles (req, res, next) {
     }
   }
   else {
-    if (debug) console.log(req.url)
+    if (verbose) console.log(req.url)
     next()
   }
 }
