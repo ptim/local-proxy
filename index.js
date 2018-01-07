@@ -1,5 +1,3 @@
-'use strict'
-
 const glob = require('glob')
 const fs = require('fs')
 const url = require('url')
@@ -53,7 +51,7 @@ const options = {
 }
 const filesToWatch = glob.sync(filePattern, options)
 
-logger.info(`{bold:Found }{magenta:%s}{bold: files to serve:}`, filesToWatch.length)
+logger.info('{bold:Found }{magenta:%s}{bold: files to serve:}', filesToWatch.length)
 logger.info('{grey:-------------------------------------}')
 filesToWatch.forEach(file => { logger.info('{green:%s}', file) })
 logger.info('{grey:-------------------------------------}\n')
@@ -84,7 +82,7 @@ function proxyLocalFiles (req, res, next) {
       res.end(localFile.toString())
     }
     catch(e) {
-      if (debug) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
+      if (verbose) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
       next()
     }
   }

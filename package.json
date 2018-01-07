@@ -22,6 +22,9 @@
       "arrowFunctions": true,
       "templateStrings": true
     },
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
     "rules": {
       "semi": [
         2,
