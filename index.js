@@ -77,17 +77,22 @@ function proxyLocalFiles (req, res, next) {
   if (cleanedPath.match(regexMashup) && !cleanedPath.match(/\.map$/)) {
     let localFileName = localPath + cleanedPath
     if (patternPrefix) localFileName = localFileName.replace(patternPrefix, '')
+
     try {
       const localFile = fs.readFileSync(localFileName)
       if (debug) logger.info('📡    {green:%s}', localFileName.replace(localPath, ''))
-      // for some reason, sendFile doesn't send the most recent change? local cache?
-      if (/\.css/.test(localFileName)) {
-        res.end(localFile.toString())
-      }
-      else {
-        res.sendFile(localFile)
-        res.end()
-      }
+
+      // https://expressjs.com/en/api.html#res.format
+      res.format({
+        'text/css': function(){
+          // for some reason, sendFile doesn't send the most recent change? local cache?
+          res.send(localFile.toString())
+        },
+        'default': function() {
+          res.sendFile(localFile)
+        },
+      })
+      res.end()
     }
     catch(e) {
       if (verbose) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
