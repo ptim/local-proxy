@@ -10,21 +10,31 @@ var logger = require('eazy-logger').Logger({
 const debug = true
 const verbose = false
 
-// The site to proxy. I suggest using the root domain,
-// but if you're repeatedly opening the same file, you might change it to a deep link
-const targetSite = 'https://staging2.flowji.com/'
+// SWITCH BETWEEN SWIPEFUILE AND FLOWJI
+const developSwipefile = true
 
-// path is a relative url from the current..
-// imagine that the directory you specify here
-// is where the proxied site's index.html is located,
-// and ensure you create a faithful directory hierarchy for the files you want replaced
-const localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/flowji-2018/'
+if (developSwipefile) {
+  // The site to proxy. I suggest using the root domain,
+  // but if you're repeatedly opening the same file, you might change it to a deep link
+  const targetSite = 'https://swipefile.flowji.com/'
 
-// filePattern is in the https://github.com/isaacs/minimatch format
-// you only need to change this if you want to restrict the files you'll include
-const filePattern = '**'
+  // path is a relative url from the current..
+  // imagine that the directory you specify here
+  // is where the proxied site's index.html is located,
+  // and ensure you create a faithful directory hierarchy for the files you want replaced
+  const localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/flowji-2018/'
 
-const patternPrefix = 'wp-content/themes/flowji-2018/'
+  // filePattern is in the https://github.com/isaacs/minimatch format
+  // you only need to change this if you want to restrict the files you'll include
+  const filePattern = '**'
+
+  const patternPrefix = 'wp-content/themes/swipefile-2018/'
+}
+else {
+  const targetSite = 'https://staging2.flowji.com/'
+  const localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/swipefile-2018/'
+  const patternPrefix = 'wp-content/themes/flowji-2018/'
+}
 
 // By default we're watching all files under the current directory
 // you can restrict this using a glob as above
@@ -81,9 +91,8 @@ function proxyLocalFiles (req, res, next) {
       const localFile = fs.readFileSync(localFileName)
       if (debug) logger.info('📡    {green:%s}', localFileName.replace(localPath, ''))
       // for some reason, sendFile doesn't send the most recent change? local cache?
-      if (/\.css/.test(localFileName)) {
+      if (/\.css/.test(localFileName))
         res.end(localFile.toString())
-      }
       else {
         res.sendFile(localFile)
         res.end()
