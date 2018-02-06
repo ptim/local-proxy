@@ -92,7 +92,7 @@ function proxyLocalFiles (req, res, next) {
       const localFile = fs.readFileSync(localFileName)
       if (debug) logger.info('📡    {green:%s}', localFileName.replace(localPath, ''))
       // for some reason, sendFile doesn't send the most recent change? local cache?
-      if (/\.css/.test(localFileName))
+      if (/\.css/.test(localFileName) || /\.js/.test(localFileName))
         res.end(localFile.toString())
       else {
         res.sendFile(localFile)
@@ -100,12 +100,12 @@ function proxyLocalFiles (req, res, next) {
       }
     }
     catch(e) {
-      if (verbose) console.log(`\n!!! Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
+      if (verbose) logger.warn(`\n🚨 Couldn't find the requested local file:\n  ${localFileName} \n  ${e} \nServing the original: \n${req.url} \n`)
       next()
     }
   }
   else {
-    if (verbose) console.log(req.url)
+    if (verbose) logger.info('{grey:%s}', req.url)
     next()
   }
 }
