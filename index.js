@@ -94,6 +94,11 @@ function proxyLocalFiles (req, res, next) {
       // for some reason, sendFile doesn't send the most recent change? local cache?
       if (/\.css/.test(localFileName) || /\.js/.test(localFileName))
         res.end(localFile.toString())
+      else if (/A\.main\.css.+/.test(localFileName)) {
+        // https://flowjimax-zu6okgsazxizyn.netdna-ssl.com/wp-content/themes/flowji-2018/dist/main.css
+        let mainCss = fs.readFileSync('dist/main.css');
+        res.end(localFile.toString())
+      }
       else {
         res.sendFile(localFile)
         res.end()
