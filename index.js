@@ -28,7 +28,7 @@ if (developSwipefile) {
   localPath = '~/Documents/Projects/Ostii/flowji/source/swipefile-2018/'
 }
 else {
-  targetSite = 'https://staging2.flowji.com/'
+  targetSite = 'https://www.flowji.com/'
   patternPrefix = 'wp-content/themes/flowji-2018/'
   localPath = '~/Documents/Projects/Ostii/flowji/source/flowji-2018/'
 }
