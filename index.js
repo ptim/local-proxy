@@ -7,30 +7,32 @@ var logger = require('eazy-logger').Logger({
 })
 
 // Set to true to see each file requested
-const debug = true
+const debug = false
 const verbose = false
 
 let targetSite, localPath, patternPrefix
 
-// SWITCH BETWEEN SWIPEFUILE AND FLOWJI
+// SWITCH BETWEEN SWIPEFILE AND FLOWJI
 const developSwipefile = false
 
 if (developSwipefile) {
   // The site to proxy. I suggest using the root domain,
   // but if you're repeatedly opening the same file, you might change it to a deep link
   targetSite = 'https://swipefile.flowji.com/'
-  patternPrefix = 'wp-content/themes/swipefile-2018/'
 
   // path is a relative url from the current..
   // imagine that the directory you specify here
   // is where the proxied site's index.html is located,
   // and ensure you create a faithful directory hierarchy for the files you want replaced
-  localPath = '~/Documents/Projects/Ostii/flowji/source/swipefile-2018/'
+  patternPrefix = 'wp-content/themes/swipefile-2018/'
+
+  // never use a tilde - always absolute path, with a trailing slash
+  localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/swipefile-2018/'
 }
 else {
   targetSite = 'https://www.flowji.com/'
   patternPrefix = 'wp-content/themes/flowji-2018/'
-  localPath = '~/Documents/Projects/Ostii/flowji/source/flowji-2018/'
+  localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/flowji-2018/'
 }
 
 // filePattern is in the https://github.com/isaacs/minimatch format
