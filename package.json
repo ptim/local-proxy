@@ -15,12 +15,15 @@
     "browser-sync": "^2.18.7",
     "dedent": "^0.7.0",
     "eazy-logger": "^3.0.2",
-    "eslint": "^3.14.1",
     "glob": "^7.0.3",
     "mime": "^2.4.0"
   },
-  "scripts": {
-    "start": "node lib/local-proxy.js"
+  "devDependencies": {
+    "eslint": "^3.14.1"
   },
-  "version": "0.2.0"
+  "scripts": {
+    "start": "node lib/local-proxy.js",
+    "test": "TODO"
+  },
+  "version": "1.0.0-alpha"
 }
