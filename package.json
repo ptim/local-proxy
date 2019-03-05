@@ -16,7 +16,8 @@
     "dedent": "^0.7.0",
     "eazy-logger": "^3.0.2",
     "eslint": "^3.14.1",
-    "glob": "^7.0.3"
+    "glob": "^7.0.3",
+    "mime": "^2.4.0"
   },
   "scripts": {
     "start": "node lib/local-proxy.js"
