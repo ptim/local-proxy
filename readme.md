@@ -115,7 +115,7 @@ Path to the directory where local files are stored. Defaults to `.` - the curren
 
 ### `-f`, `--files`
 
-Proxy (and watch) files matching this minimatch pattern.
+Proxy (and watch) files matching this glob pattern.
 
 Defaults to `**/*.css` - any CSS file below the current directory.
 
@@ -124,7 +124,11 @@ Eg:
 - `**` = any file in any subdirectory
 - `dist/*.(css|js)` = CSS or JS files in the dist directory
 
-See https://github.com/isaacs/minimatch#usage
+See:
+
+- [Gulp: explaining Globs](https://gulpjs.com/docs/en/getting-started/explaining-globs) 
+- [glob-primer](https://github.com/isaacs/node-glob#glob-primer) (we're actually using fast-glob, but this documentation is similar, and succinct)
+- [micromatch](https://github.com/micromatch/micromatch#matching-features) which does the pattern matching for fast-glob
 
 
 ### `-p`, `--prefix`       
