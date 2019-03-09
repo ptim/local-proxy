@@ -16,7 +16,8 @@
     "dedent": "^0.7.0",
     "eazy-logger": "^3.0.2",
     "fast-glob": "^2.2.6",
-    "mime": "^2.4.0"
+    "mime": "^2.4.0",
+    "serve-static": "^1.13.2"
   },
   "devDependencies": {
     "eslint": "^3.14.1"
