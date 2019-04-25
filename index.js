@@ -13,21 +13,21 @@ const verbose = false
 let targetSite, localPath, patternPrefix
 
 // SWITCH BETWEEN SWIPEFILE AND FLOWJI
-const developSwipefile = false
+const developFlowjiAstra = true
 
-if (developSwipefile) {
+if (developFlowjiAstra) {
   // The site to proxy. I suggest using the root domain,
   // but if you're repeatedly opening the same file, you might change it to a deep link
-  targetSite = 'https://swipefile.flowji.com/'
+  targetSite = 'https://flowji.flowjidev.com/'
 
   // path is a relative url from the current..
   // imagine that the directory you specify here
   // is where the proxied site's index.html is located,
   // and ensure you create a faithful directory hierarchy for the files you want replaced
-  patternPrefix = 'wp-content/themes/swipefile-2018/'
+  patternPrefix = 'wp-content/themes/flowji-astra/'
 
   // never use a tilde - always absolute path, with a trailing slash
-  localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/swipefile-2018/'
+  localPath = '/Users/ptim/Documents/Projects/Ostii/flowji/source/flowji-astra'
 }
 else {
   targetSite = 'https://www.flowji.com/'
