@@ -14,9 +14,9 @@ This side steps the complexities of keeping your local and remote databases and 
 It's recommended to install globally so that you can use it across any of your projects:
 
 ```bash
-npm install -g local-proxy
+npm install -g @ptim/local-proxy
 # or
-yarn global add local-proxy
+yarn global add @ptim/local-proxy
 ```
 
 If you prefer to install locally, consider adding an entry to NPM scripts in package.json:
@@ -172,6 +172,7 @@ Show help
 
 ## Todos
 
+- tests!
 - add a command to mirror all the files loaded by the target site
 - port across to a webpack configuration
 
