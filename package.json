@@ -1,8 +1,7 @@
 {
-  "name": "local-proxy",
+  "name": "@ptim/local-proxy",
   "description": "Friendly middleware to proxy local files using browser-sync",
   "author": "Tim Osborn",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/ptim/local-proxy.git"
@@ -23,7 +22,12 @@
   },
   "scripts": {
     "start": "node lib/local-proxy.js",
-    "test": "TODO"
+    "preversion": "npm test",
+    "postversion": "npm publish --access public",
+    "postversion-branch-example": "npm publish --access public --tag=next",
+    "postversion-reference": "https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes#branchs-and-dist-tags",
+    "postpublish": "git push origin --all; git push origin --tags",
+    "test": "echo 'TODO' && exit 0"
   },
-  "version": "1.0.0-alpha"
+  "version": "1.0.0"
 }
