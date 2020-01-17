@@ -169,6 +169,21 @@ Show version number
 
 Show help                                                             
 
+## Troubleshooting / FAQ
+
+### I see a certificate security warning!
+
+This is expected - self signed certificates are not implemented. Click 'Advanced' and proceed to the insecure site - YOLO!
+
+### I'm redirected to the site I'm trying to proxy!
+
+Most likely due to a server-side redirection, like an htaccess directive to redirect a `www` domain to a "naked " domain. 
+
+- load the target site directly and copy the URL
+- `yarn start <copied URL>`
+
+If this fixes the issue, update your config.
+
 
 ## Todos
 
