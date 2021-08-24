@@ -22,10 +22,10 @@
   },
   "scripts": {
     "start": "node lib/local-proxy.js",
+    "// npm version example": "npm version minor",
+    "// npm version reference": "https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes#branchs-and-dist-tags",
     "preversion": "npm test",
     "postversion": "npm publish --access public",
-    "postversion-branch-example": "npm publish --access public --tag=next",
-    "postversion-reference": "https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes#branchs-and-dist-tags",
     "postpublish": "git push origin --all",
     "test": "echo 'TODO' && exit 0"
   },
