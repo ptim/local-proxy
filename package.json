@@ -14,11 +14,11 @@
     "browser-sync": "^2.26.3",
     "dedent": "^0.7.0",
     "eazy-logger": "^3.0.2",
-    "fast-glob": "^2.2.6",
-    "mime": "^2.4.0"
+    "fast-glob": "^3.2.7",
+    "mime": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.14.1"
+    "eslint": "^8.5.0"
   },
   "scripts": {
     "start": "node lib/local-proxy.js",
