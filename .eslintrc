@@ -2,10 +2,10 @@
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",
-    "ecmaFeatures": {},
+    "ecmaFeatures": {}
   },
   "env": {
-    "node": true,
+    "node": true
   },
   "ecmaFeatures": {
     "blockBindings": true,
@@ -17,6 +17,6 @@
     "quotes": [2, "single"],
     "curly": [2, "multi"],
     "no-process-exit": 0,
-    "comma-dangle": [2, "always-multiline"],
-  },
+    "comma-dangle": [2, "always-multiline"]
+  }
 }

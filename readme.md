@@ -8,7 +8,6 @@ The primary use case for local-proxy has been to assist in the development of Wo
 
 This side steps the complexities of keeping your local and remote databases and media libraries in sync, and allows you to make hot-reloaded CSS edits which are visible only to you. Mess around with your theme in private, and deploy the renovated theme when it's ready.
 
-
 ## Installation
 
 It's not necessary to install - you can use `npx` to run a 'temporary auto-installed' version:
@@ -29,14 +28,13 @@ If you prefer to install locally, consider adding an entry to NPM scripts in pac
 
 ```json
 {
-    "scripts": {
-        "proxy": "local-proxy https://example.com"
-    }
+  "scripts": {
+    "proxy": "local-proxy https://example.com"
+  }
 }
 ```
 
 Then you can `npm run proxy` or `yarn proxy`.
-
 
 ## Execution
 
@@ -51,7 +49,6 @@ By default, local-proxy will assume that the current folder is a WordPress theme
 
 See #concept and #options for more info.
 
-
 ## Concept
 
 local-proxy does three main things:
@@ -64,9 +61,9 @@ The most basic example configuration might be:
 
 ```json
 {
-    "target": "example.com",
-    "prefix": "wp-content/themes/my-theme",
-    "files": "style.css"
+  "target": "example.com",
+  "prefix": "wp-content/themes/my-theme",
+  "files": "style.css"
 }
 ```
 
@@ -82,16 +79,15 @@ You could proxy both your plugins and themes directory like so:
 
 ```json
 {
-    "target": "example.com",
-    "prefix": "wp-content",
-    "files": "(themes|plugins)/**"
+  "target": "example.com",
+  "prefix": "wp-content",
+  "files": "(themes|plugins)/**"
 }
 ```
 
 This should work nicely if you run local-proxy from inside your local `wp-content` directory. You only need to mirror files that you actually want to override! If there's a problem finding or serving a local file, then the original, remote file will be sent to the browser instead.
 
 Of course, this is really only useful for styling changes, because **your local PHP files will never get executed on the live site!**
-
 
 ## Options
 
@@ -113,11 +109,9 @@ Options should be provided in camelCase only, eg:
 { "target": "example.com" }
 ```
 
-
 ### `-d`, `--directory`
 
 Path to the directory where local files are stored. Defaults to `.` - the current directory.
-
 
 ### `-f`, `--files`
 
@@ -136,7 +130,6 @@ See:
 - [glob-primer](https://github.com/isaacs/node-glob#glob-primer) (we're actually using fast-glob, but this documentation is similar, and succinct)
 - [micromatch](https://github.com/micromatch/micromatch#matching-features) which does the pattern matching for fast-glob
 
-
 ### `-p`, `--prefix`
 
 The path components between the domain and the file(s) you want to match.
@@ -145,36 +138,29 @@ If your target file is `example.com/wp-content/themes/my-theme/styles.css`, then
 
 By default, local-proxy will assume that the current folder is a WordPress theme folder, and will set `prefix` variable accordingly, eg: `wp-content/themes/my-wordpress-theme`.
 
-
 ### `-o`, `--open`
 
 Auto-open in the browser. Defaults to `false`.
-
 
 ### `-n`, `--no-open`
 
 Don't auto-open in the browser Defaults to `true`.
 
-
 ### `-P`, `--port`
 
 Port to serve the proxied site on. Defaults to `3000`.
-
 
 ### `-v`, `--verbose`
 
 Print extra detail in the console. Pass `-v`, `-vv`, or `-vvv`.
 
-
 ### `--version`
 
 Show version number
 
-
 ### `--help`
 
 Show help
-
 
 ## Troubleshooting
 
@@ -189,7 +175,6 @@ Files to inject: **/*.(css|css.map)
 ```
 
 Note: "./" means the directory from which you ran local-proxy.
-
 
 ### Why doesn't my target URL load?
 
@@ -211,15 +196,13 @@ Ensure that the protocol of your target url is correct. Eg:
 ❌ https://example.com => http://localhost
 ❌ http://example.com => https://localhost
 
-
 ### Why are my changes not detected by browsersync?
 
 Is the "Files to inject" config correct?
 
-
 ### Why is my page reloading on CSS changes?
 
-...rather than the styles being injected? In all likelihood, another file (eg *.js) is also triggering a refresh, and this other file can't be injected. If this is the case, browsersync will display something along the lines of
+...rather than the styles being injected? In all likelihood, another file (eg \*.js) is also triggering a refresh, and this other file can't be injected. If this is the case, browsersync will display something along the lines of
 
 > Files changed (2 changes buffered)
 
@@ -235,13 +218,12 @@ This is expected - self signed certificates are not implemented. Click 'Advanced
 
 ### I'm redirected to the site I'm trying to proxy!
 
-Most likely due to a server-side redirection, like an htaccess directive to redirect a `www` domain to a "naked " domain. 
+Most likely due to a server-side redirection, like an htaccess directive to redirect a `www` domain to a "naked " domain.
 
 - load the target site directly and copy the URL
 - `yarn start <copied URL>`
 
 If this fixes the issue, update your config.
-
 
 ## Todos
 
