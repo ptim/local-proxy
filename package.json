@@ -35,7 +35,7 @@
     "// npm version reference": "https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes#branchs-and-dist-tags",
     "preversion": "npm test",
     "postversion": "npm publish --access public && echo https://www.npmjs.com/package/@ptim/local-proxy",
-    "postpublish": "git push origin --all",
+    "postpublish": "git push origin --all && git push --tags",
     "test": "echo 'TODO' && exit 0"
   },
   "version": "1.2.2"
