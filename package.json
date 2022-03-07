@@ -6,7 +6,6 @@
     "type": "git",
     "url": "git://github.com/ptim/local-proxy.git"
   },
-  "preferGlobal": "true",
   "bin": {
     "local-proxy": "lib/local-proxy.js"
   },
