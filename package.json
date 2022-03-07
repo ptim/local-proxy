@@ -38,5 +38,5 @@
     "postpublish": "git push origin --all",
     "test": "echo 'TODO' && exit 0"
   },
-  "version": "1.2.0"
+  "version": "1.2.1"
 }
