@@ -1,6 +1,13 @@
 {
   "name": "@ptim/local-proxy",
   "description": "Friendly middleware to proxy local files using browser-sync",
+  "keywords": [
+    "browser-sync",
+    "proxy",
+    "local",
+    "wordpress",
+    "front-end"
+  ],
   "author": "Tim Osborn",
   "repository": {
     "type": "git",
@@ -27,7 +34,7 @@
     "// npm version example": "npm version minor",
     "// npm version reference": "https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes#branchs-and-dist-tags",
     "preversion": "npm test",
-    "postversion": "npm publish --access public",
+    "postversion": "npm publish --access public && echo https://www.npmjs.com/package/@ptim/local-proxy",
     "postpublish": "git push origin --all",
     "test": "echo 'TODO' && exit 0"
   },
