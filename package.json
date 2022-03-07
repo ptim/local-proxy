@@ -6,6 +6,8 @@
     "type": "git",
     "url": "git://github.com/ptim/local-proxy.git"
   },
+  "type": "module",
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0",
   "bin": {
     "local-proxy": "lib/local-proxy.js"
   },
